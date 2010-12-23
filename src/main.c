@@ -54,7 +54,8 @@
 static const char *it_msg =
     "\brThe Powder Toy - http://powdertoy.co.uk/\n"
     "\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\n"
-    "\n"
+    "\brModified by Murtaugh a.k.a Mur - 12-23-2010.\n"
+    "\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\n"
     "\bgControl+C/V/X are Copy, Paste and cut respectively.\n"
     "\bgTo choose a material, hover over once of the icons on the right, it will show a selection of elements in that group.\n"
     "\bgPick your material from the menu using mouse left/right buttons.\n"
@@ -75,7 +76,7 @@ static const char *it_msg =
     "\bgCopyright (c) 2008-10 Stanislaw K Skowronek (\brhttp://powder.unaligned.org\bg, \bbirc.unaligned.org #wtf\bg)\n"
     "\bgCopyright (c) 2010 Simon Robertshaw (\brhttp://powdertoy.co.uk\bg, \bbirc.freenode.net #powder\bg)\n"
     "\bgCopyright (c) 2010 Skresanov Savely (Stickman)\n"
-	"\bgCopyright (c) 2010 cracker64\n"
+    "\bgCopyright (c) 2010 cracker64\n"
     "\bgCopyright (c) 2010 Bryan Hoyle (New elements)\n"
     "\bgCopyright (c) 2010 Nathan Cousins (New elements, small engine mods.)\n"
     "\n"
