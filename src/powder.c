@@ -1441,13 +1441,12 @@ void update_particles_i(pixel *vid, int start, int inc)
                 parts[i].vx += ptypes[t].diffusion*(rand()/(0.5f*RAND_MAX)-1.0f);
                 parts[i].vy += ptypes[t].diffusion*(rand()/(0.5f*RAND_MAX)-1.0f);
             }
-            if((t==PT_PLST) && !parts[i].life)
+            if((t==PT_PLST))
             {
                 if(pv[y/CELL][x/CELL]>4.0f)
                 {
                     parts[i].vx += ptypes[t].advection*vx[y/CELL][x/CELL];
                     parts[i].vy += ptypes[t].advection*vy[y/CELL][x/CELL];
-                    parts[i].life = rand()%80+300;
                 }
             }
 
