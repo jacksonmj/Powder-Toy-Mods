@@ -190,7 +190,8 @@
 #define PT_MUR 140
 #define PT_PLST 141
 #define PT_CORE 142
-#define PT_NUM  143
+#define PT_VIRU 143
+#define PT_NUM  144
 
 #define R_TEMP 22
 #define MAX_TEMP 9999
@@ -418,14 +419,15 @@ static const part_type ptypes[PT_NUM] =
     {"FOIL",	PIXPACK(0x505020),	0.6f,	0.01f * CFDS,	0.98f,	0.95f,	0.1f,	0.1f,	0.00f,	0.0000  * CFDS, 2,	10,	0,	0,	1,	1,	20,	SC_MUR,			R_TEMP-44.0f	+273.15f,	163,	"Freon, but oil. Also refrigerator oil.", TYPE_LIQUID|PROP_NEUTPENETRATE, NULL},
     {"HYDR",    PIXPACK(0X10A0CC),	0.9f,   0.00f * CFDS,   0.99f,  0.30f,  -0.1f,  0.0f,   4.00f,  0.000f  * CFDS, 0,	1000,	0,	0,  	0,	1,	1,	SC_MUR,			R_TEMP+0.0f	+273.15f,	28,     "Hydrogen, very flammable gas. Produces DSTW when mixed with oxygen.", TYPE_GAS|PROP_NEUTPENETRATE, NULL},
     {"ROCK",	PIXPACK(0xA7A7A7),	0.0f,	0.00f * CFDS,	0.00f,	0.00f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	5,	1,	1,	100,	SC_MUR,			R_TEMP+0.0f	+273.15f,	150,	"Rock or solid stone. Crashes under pressure.", TYPE_SOLID, NULL},
-    {"ALCH",	PIXPACK(0X9FE3CB),	0.6f,	0.01f * CFDS,	0.98f,	0.95f,	0.0f,	0.2f,	0.00f,	0.000f  * CFDS, 2,	25,	0.01f,	0,	5,	1,	30,	SC_MUR,			R_TEMP-5.0f	+273.15f,	90,	"Alcohol. Flammable liquid.", TYPE_LIQUID|PROP_NEUTPENETRATE, NULL},
-    {"PSTR",    PIXPACK(0XE1E1E1),	0.0f,   0.00f * CFDS,   0.90f,  0.00f,  0.0f,   0.0f,   0.00f,  0.0000f * CFDS, 0,	0,	0,	1,  	20,	1,	100,	SC_MUR,			R_TEMP+0.0f     +273.15,	90,	"Plaster. Turns into dust under pressure.", TYPE_SOLID|PROP_NEUTPENETRATE, NULL},
-    {"GRND",	PIXPACK(0X703500),	0.0f,	0.00f * CFDS,	0.90f,	0.00f,	0.0f,	0.0f,	0.00f,	0.0000f * CFDS, 0,	0,	0,	1,  	20,	1,	100,	SC_MUR,			R_TEMP+0.0f	+273.15f,	120,	"Ground. Solid, turns into MUD when mixed with water, into PGND under pressure.", TYPE_SOLID|PROP_NEUTPENETRATE, NULL},
-    {"PGND",	PIXPACK(0X623100),	0.6f,	0.01f * CFDS,	0.90f,	0.85f,	0.0f,	0.2f,	0.00f,	0.0000f * CFDS, 1,      0,	0,	1, 	22,	1,	65,     SC_MUR,			R_TEMP+0.0f	+273.15f,	120,	"Powder ground. Turns into MUD when mixed with water.", TYPE_PART|PROP_NEUTPENETRATE, NULL},
+    {"ALCH",	PIXPACK(0x9FE3CB),	0.6f,	0.01f * CFDS,	0.98f,	0.95f,	0.0f,	0.2f,	0.00f,	0.000f  * CFDS, 2,	25,	0.01f,	0,	5,	1,	30,	SC_MUR,			R_TEMP-5.0f	+273.15f,	90,	"Alcohol. Flammable liquid.", TYPE_LIQUID|PROP_NEUTPENETRATE, NULL},
+    {"PSTR",    PIXPACK(0xE1E1E1),	0.0f,   0.00f * CFDS,   0.90f,  0.00f,  0.0f,   0.0f,   0.00f,  0.0000f * CFDS, 0,	0,	0,	1,  	20,	1,	100,	SC_MUR,			R_TEMP+0.0f     +273.15,	90,	"Plaster. Turns into dust under pressure.", TYPE_SOLID|PROP_NEUTPENETRATE, NULL},
+    {"GRND",	PIXPACK(0x703500),	0.0f,	0.00f * CFDS,	0.00f,	0.00f,	0.0f,	0.0f,	0.00f,	0.0000f * CFDS, 0,	0,	0,	1,  	20,	1,	100,	SC_MUR,			R_TEMP+0.0f	+273.15f,	120,	"Ground. Solid, turns into MUD when mixed with water, into PGND under pressure.", TYPE_SOLID|PROP_NEUTPENETRATE, NULL},
+    {"PGND",	PIXPACK(0x623100),	0.6f,	0.01f * CFDS,	0.90f,	0.85f,	0.0f,	0.2f,	0.00f,	0.0000f * CFDS, 1,      0,	0,	1, 	22,	1,	65,     SC_MUR,			R_TEMP+0.0f	+273.15f,	120,	"Powder ground. Turns into MUD when mixed with water.", TYPE_PART|PROP_NEUTPENETRATE, NULL},
     {"MUD",	PIXPACK(0x603000),	0.1f,	0.01f * CFDS,	0.99f,	0.97f,	0.0f,	0.2f,	0.00f,	0.0000f * CFDS,	2,	0,	0,	1,	22,	1,	48,	SC_MUR,			R_TEMP+0.0f	+273.15f,	120,	"Mud. Liquid. Turns into SGND when heated.", TYPE_LIQUID|PROP_NEUTPENETRATE, NULL},
     {"MUR",	PIXPACK(0x0AE3F2),	0.7f,   0.02f * CFDS,   0.96f,  0.80f,  0.00f,  0.00f,  5.00f,  0.1f    * CFDS, 1,	0,	0,	0,	0,	1,	99,	SC_MUR,		 	9999.00f,			70,	"Murtaugh :). Discover by yourself", TYPE_GAS|PROP_BLACK|PROP_NEUTABSORB, NULL},
     {"PLST",	PIXPACK(0x1A1A1A),	0.1f,	0.00f * CFDS,	0.97f,	0.50f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	40,	0,	0,	12,	1,	100,	SC_MUR,			R_TEMP+0.0f	+273.15f,	75,	"Plastic. Deforms under pressure. Burns slowly", TYPE_SOLID | PROP_NEUTPENETRATE, NULL},
-    {"CORE",	PIXPACK(0X5A5A5A),	0.0f,	0.00f * CFDS,	0.90f,	0.00f,	0.0f,	0.0f,	0.00f,	0.0000f * CFDS, 0,	50000,	100,	0,  	0,	1,	100,	SC_MUR,			9999.00f,			255,	"Singularity core. Explodes in contact with almost everything. Better reacts with photon and neutrons", TYPE_SOLID|PROP_BLACK|PROP_NEUTABSORB, NULL},
+    {"CORE",	PIXPACK(0x5A5A5A),	0.0f,	0.00f * CFDS,	0.00f,	0.00f,	0.0f,	0.0f,	0.00f,	0.0000f * CFDS, 0,	50000,	100,	0,  	0,	1,	100,	SC_MUR,			9999.00f,			255,	"Singularity core. Explodes in contact with almost everything. Better reacts with photon and neutrons", TYPE_SOLID|PROP_BLACK|PROP_NEUTABSORB, NULL},
+    {"VIRU",	PIXPACK(0x75196E),	0.0f,	0.01f * CFDS,	0.99f,	0.99f,	-0.1f,	0.2f,	0.00f,	0.000f	* CFDS,	1,	0,	0,	0,	0,	1,	99,	SC_MUR,			R_TEMP+0.0f	+273.15f,	1,	"Virus. Try to figure out.", TYPE_PART, NULL},
 	//Name		Colour		Advec	Airdrag		Airloss	Loss	Collid	Grav	Diffus	Hotair		Fal	Burn	Exp	Mel	Hrd	M	Weights	Section			H				Ins		Description
 };
 
@@ -575,6 +577,7 @@ static part_state pstates[PT_NUM] =
     /* MUR  */ {ST_GAS,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
     /* PLST */ {ST_SOLID,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_FIRE, 973.15f},
     /* CORE */ {ST_SOLID,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* VIRU */ {ST_SOLID,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
 
 };
 static int grule[NGOL][9] = 

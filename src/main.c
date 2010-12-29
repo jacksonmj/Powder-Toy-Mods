@@ -54,7 +54,7 @@
 static const char *it_msg =
     "\brThe Powder Toy - http://powdertoy.co.uk/\n"
     "\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\n"
-    "\brModified by Murtaugh a.k.a Mur - 12-23-2010.\n"
+    "\brModified by Murtaugh a.k.a Mur - 12-29-2010.\n"
     "\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\n"
     "\bgControl+C/V/X are Copy, Paste and cut respectively.\n"
     "\bgTo choose a material, hover over once of the icons on the right, it will show a selection of elements in that group.\n"
@@ -2342,12 +2342,12 @@ int main(int argc, char *argv[])
             }
 			
 #ifdef BETA
-			sprintf(uitext, "Version %d Beta %d FPS:%d Parts:%d Generation:%d", SAVE_VERSION, MINOR_VERSION, FPSB, NUM_PARTS,GENERATION);
+			sprintf(uitext, "Murtaugh's Mod 1.3 - Version %d Beta %d FPS:%d Parts:%d Generation:%d", SAVE_VERSION, MINOR_VERSION, FPSB, NUM_PARTS,GENERATION);
 #else
 			if(DEBUG_MODE)
-				sprintf(uitext, "Version %d.%d FPS:%d Parts:%d Generation:%d", SAVE_VERSION, MINOR_VERSION, FPSB, NUM_PARTS,GENERATION);
+				sprintf(uitext, "Murtaugh's Mod 1.3 - Version %d.%d FPS:%d Parts:%d Generation:%d", SAVE_VERSION, MINOR_VERSION, FPSB, NUM_PARTS,GENERATION);
 			else
-				sprintf(uitext, "Version %d.%d FPS:%d", SAVE_VERSION, MINOR_VERSION, FPSB);
+				sprintf(uitext, "Murtaugh's Mod 1.3 - Version %d.%d FPS:%d", SAVE_VERSION, MINOR_VERSION, FPSB);
 #endif
 			if(REPLACE_MODE)
 				strappend(uitext, " [REPLACE MODE]");

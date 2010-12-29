@@ -1788,10 +1788,32 @@ void update_particles_i(pixel *vid, int start, int inc)
                         if(x+nx>=0 && y+ny>0 && x+nx<XRES && y+ny<YRES && (nx || ny))
 			{
                             r = pmap[y+ny][x+nx];
+                            if((r>>8)>=NPART || !r)
+                                continue;
+                            r = pmap[y+ny][x+nx];
                             if((r&0xFF)!=PT_MUR&&(r&0xFF)!=PT_DMND&&(r&0xFF)!=PT_CLNE&&(r&0xFF)!=PT_INSL&&(r&0xFF)!=PT_PCLN&&(r&0xFF)!=PT_BCLN&&(r&0xFF))
                         	{
                                 	t = parts[i].type = PT_MUR;
 					parts[r>>8].type = PT_THDR;
+                            	}
+			}
+	    }
+	    if(t==PT_VIRU)
+	    {
+                for(nx=-2; nx<3; nx++)
+                    for(ny=-2; ny<3; ny++)
+                        if(x+nx>=0 && y+ny>0 && x+nx<XRES && y+ny<YRES && (nx || ny))
+			{
+                            r = pmap[y+ny][x+nx];
+                            if((r>>8)>=NPART || !r)
+                                continue;
+                            r = pmap[y+ny][x+nx];
+                            if((r&0xFF)!=PT_VIRU&&(r&0xFF)!=PT_DMND&&(r&0xFF)!=PT_CLNE&&(r&0xFF)!=PT_PIPE&&(r&0xFF)!=PT_PCLN&&(r&0xFF))
+                        	{
+                                	t = parts[i].type = (r&0xFF);
+                                    	parts[i].life = 30;
+					parts[r>>8].type = PT_VIRU;
+                                    	parts[r>>8].life = 30;
                             	}
 			}
 	    }
@@ -1801,6 +1823,9 @@ void update_particles_i(pixel *vid, int start, int inc)
                     for(ny=-2; ny<3; ny++)
                         if(x+nx>=0 && y+ny>0 && x+nx<XRES && y+ny<YRES && (nx || ny))
 			{
+                            r = pmap[y+ny][x+nx];
+                            if((r>>8)>=NPART || !r)
+                                continue;
                             r = pmap[y+ny][x+nx];
                             if((r&0xFF)!=PT_CORE&&(r&0xFF)!=PT_DMND&&(r&0xFF)!=PT_CLNE&&(r&0xFF)!=PT_INSL&&(r&0xFF)!=PT_PCLN&&(r&0xFF)!=PT_BCLN&&(r&0xFF))
                         	{
@@ -1816,6 +1841,9 @@ void update_particles_i(pixel *vid, int start, int inc)
                         if(x+nx>=0 && y+ny>0 && x+nx<XRES && y+ny<YRES && (nx || ny))
 			{
                             r = pmap[y+ny][x+nx];
+                            if((r>>8)>=NPART || !r)
+                                continue;
+                            r = pmap[y+ny][x+nx];
                             if((r&0xFF)==PT_O2 || (r&0xFF)==PT_LO2)
                         	{
                                 	t = parts[i].type = PT_DSTW;
@@ -1830,6 +1858,9 @@ void update_particles_i(pixel *vid, int start, int inc)
                         if(x+nx>=0 && y+ny>0 && x+nx<XRES && y+ny<YRES && (nx || ny))
 			{
                             r = pmap[y+ny][x+nx];
+                            if((r>>8)>=NPART || !r)
+                                continue;
+                            r = pmap[y+ny][x+nx];
                             if((r&0xFF)==PT_WATR || (r&0xFF)==PT_SLTW || (r&0xFF)==PT_DSTW)
                         	{
                                 	t = parts[i].type = PT_MUD;
@@ -1843,6 +1874,9 @@ void update_particles_i(pixel *vid, int start, int inc)
                     for(ny=-2; ny<3; ny++)
                         if(x+nx>=0 && y+ny>0 && x+nx<XRES && y+ny<YRES && (nx || ny))
 			{
+                            r = pmap[y+ny][x+nx];
+                            if((r>>8)>=NPART || !r)
+                                continue;
                             r = pmap[y+ny][x+nx];
                             if((r&0xFF)==PT_FIRE || (r&0xFF)==PT_LAVA || (r&0xFF)==PT_PLSM && 1>(rand()%10) && legacy_enable)
                             {
