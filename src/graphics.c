@@ -1732,6 +1732,8 @@ void draw_parts(pixel *vid)
                     	    }
 
 		    	}
+			else
+				blendpixel(vid, nx, ny, cr, cg, cb, 255);
 		}
 		else if(t==PT_PIPE)
 		{
