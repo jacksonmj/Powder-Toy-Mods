@@ -54,7 +54,7 @@
 static const char *it_msg =
     "\brThe Powder Toy - http://powdertoy.co.uk/\n"
     "\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\n"
-    "\brModified by Murtaugh a.k.a Mur - 12-29-2010.\n"
+    "\brModified by Murtaugh a.k.a Mur - 01-01-2011.\n"
     "\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\n"
     "\bgControl+C/V/X are Copy, Paste and cut respectively.\n"
     "\bgTo choose a material, hover over once of the icons on the right, it will show a selection of elements in that group.\n"
@@ -68,17 +68,17 @@ static const char *it_msg =
     "\n\boUse 'Z' for a zoom tool. Click to make the drawable zoom window stay around. Use the wheel to change the zoom strength\n"
     "Use 'S' to save parts of the window as 'stamps'.\n"
     "'L' will load the most recent stamp, 'K' shows a library of stamps you saved.\n"
-    "'C' will cycle the display mode (Fire, Blob, Velocity and Pressure). The numbers 1 to 7 will do the same\n"
+    "'C' will cycle the display mode (Fire, Blob, Velocity and Pressure). The numbers 1 to 9 will do the same\n"
     "Use the mouse scroll wheel to change the tool size for particles.\n"
     "The spacebar can be used to pause physics.\n"
     "'P' will take a screenshot and save it into the current directory.\n"
     "\n"
     "\bgCopyright (c) 2008-10 Stanislaw K Skowronek (\brhttp://powder.unaligned.org\bg, \bbirc.unaligned.org #wtf\bg)\n"
-    "\bgCopyright (c) 2010 Simon Robertshaw (\brhttp://powdertoy.co.uk\bg, \bbirc.freenode.net #powder\bg)\n"
-    "\bgCopyright (c) 2010 Skresanov Savely (Stickman)\n"
-    "\bgCopyright (c) 2010 cracker64\n"
-    "\bgCopyright (c) 2010 Bryan Hoyle (New elements)\n"
-    "\bgCopyright (c) 2010 Nathan Cousins (New elements, small engine mods.)\n"
+    "\bgCopyright (c) 2010-11 Simon Robertshaw (\brhttp://powdertoy.co.uk\bg, \bbirc.freenode.net #powder\bg)\n"
+    "\bgCopyright (c) 2010-11 Skresanov Savely (Stickman)\n"
+    "\bgCopyright (c) 2010-11 cracker64\n"
+    "\bgCopyright (c) 2010-11 Bryan Hoyle (New elements)\n"
+    "\bgCopyright (c) 2010-11 Nathan Cousins (New elements, small engine mods.)\n"
     "\n"
     "\bgTo use online features such as saving, you need to register at: \brhttp://powdertoy.co.uk/Register.html"
     ;
@@ -2341,14 +2341,11 @@ int main(int argc, char *argv[])
                 pastFPS = currentTime;
             }
 			
-#ifdef BETA
-			sprintf(uitext, "Murtaugh's Mod 1.3 - Version %d Beta %d FPS:%d Parts:%d Generation:%d", SAVE_VERSION, MINOR_VERSION, FPSB, NUM_PARTS,GENERATION);
-#else
+			sprintf(uitext, "Murtaugh's Mod 1.3\nVersion %d Beta %d FPS:%d\nParts:%d Generation:%d", SAVE_VERSION, MINOR_VERSION, FPSB, NUM_PARTS,GENERATION);
+
 			if(DEBUG_MODE)
-				sprintf(uitext, "Murtaugh's Mod 1.3 - Version %d.%d FPS:%d Parts:%d Generation:%d", SAVE_VERSION, MINOR_VERSION, FPSB, NUM_PARTS,GENERATION);
-			else
-				sprintf(uitext, "Murtaugh's Mod 1.3 - Version %d.%d FPS:%d", SAVE_VERSION, MINOR_VERSION, FPSB);
-#endif
+				sprintf(uitext, "Murtaugh's Mod 1.3 \n Version %d.%d FPS:%d \n Parts:%d Generation:%d", SAVE_VERSION, MINOR_VERSION, FPSB, NUM_PARTS,GENERATION);
+
 			if(REPLACE_MODE)
 				strappend(uitext, " [REPLACE MODE]");
 			if(sdl_mod&(KMOD_CAPS))
@@ -2374,7 +2371,7 @@ int main(int argc, char *argv[])
                 fillrect(vid_buf, XRES-20-textwidth(heattext), 12, textwidth(heattext)+8, 15, 0, 0, 0, 140);
                 drawtext(vid_buf, XRES-16-textwidth(heattext), 16, heattext, 255, 255, 255, 200);
             }
-            fillrect(vid_buf, 12, 12, textwidth(uitext)+8, 15, 0, 0, 0, 140);
+	    fillrect(vid_buf, 12, 12, 130, 40, 0, 0, 0, 140);
             drawtext(vid_buf, 16, 16, uitext, 32, 216, 255, 200);
         }
         sdl_blit(0, 0, XRES+BARSIZE, YRES+MENUSIZE, vid_buf, XRES+BARSIZE);

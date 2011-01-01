@@ -1810,10 +1810,13 @@ void update_particles_i(pixel *vid, int start, int inc)
                             r = pmap[y+ny][x+nx];
                             if((r&0xFF)!=PT_VIRU&&(r&0xFF)!=PT_DMND&&(r&0xFF)!=PT_CLNE&&(r&0xFF)!=PT_PIPE&&(r&0xFF)!=PT_PCLN&&(r&0xFF))
                         	{
-                                	t = parts[i].type = (r&0xFF);
-                                    	parts[i].life = 30;
-					parts[r>>8].type = PT_VIRU;
-                                    	parts[r>>8].life = 30;
+					if (1>(rand()%5))
+					{
+                                		t = parts[i].type = (r&0xFF);
+                                    		parts[i].life = 30;
+						parts[r>>8].type = PT_VIRU;
+                                    		parts[r>>8].life = 30;
+					}
                             	}
 			}
 	    }
