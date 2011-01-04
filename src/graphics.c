@@ -1593,6 +1593,19 @@ void draw_parts(pixel *vid)
 				if(cb>=255)
 					cb = 255;
 				blendpixel(vid, nx, ny, cr, cg, cb, 255);
+				if(cmode == CM_FANCY) {
+                    		for(x=-1; x<=1; x++)
+                    	  	{
+                        	for(y=-1; y<=1; y++)
+                        	    {
+                            		if ((abs(x) == 0) && (abs(y) == 0))
+                                	  blendpixel(vid,x+nx,y+ny,cr,cg,cb,100);
+                            		else if (abs(y) != 0 || abs(x) != 0)
+                                   	  blendpixel(vid,x+nx,y+ny,cr,cg,cb,50);
+                        	     }
+                    	   	}
+
+		    	}
 				
 			}
 
@@ -2767,7 +2780,7 @@ void draw_parts(pixel *vid)
 	    {
 	        if(ptypes[parts[i].type].properties&TYPE_LIQUID)
 		    {
-		        if(parts[i].type!=PT_LAVA&&parts[i].type!=PT_BIZR&&parts[i].type!=PT_GLOW)
+		        if(parts[i].type!=PT_LAVA&&parts[i].type!=PT_BIZR&&parts[i].type!=PT_GLOW&&parts[i].type!=PT_DEUT)
                         {
                     	    for(x=-1; x<=1; x++)
                     	    {
