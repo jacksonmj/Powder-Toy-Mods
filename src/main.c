@@ -54,7 +54,7 @@
 static const char *it_msg =
     "\brThe Powder Toy - http://powdertoy.co.uk/\n"
     "\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\n"
-    "\brModified by Murtaugh a.k.a Mur - 01-01-2011.\n"
+    "\brModified by Murtaugh a.k.a Mur - 01-02-2011.\n"
     "\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\n"
     "\bgControl+C/V/X are Copy, Paste and cut respectively.\n"
     "\bgTo choose a material, hover over once of the icons on the right, it will show a selection of elements in that group.\n"
@@ -68,7 +68,7 @@ static const char *it_msg =
     "\n\boUse 'Z' for a zoom tool. Click to make the drawable zoom window stay around. Use the wheel to change the zoom strength\n"
     "Use 'S' to save parts of the window as 'stamps'.\n"
     "'L' will load the most recent stamp, 'K' shows a library of stamps you saved.\n"
-    "'C' will cycle the display mode (Fire, Blob, Velocity and Pressure). The numbers 1 to 9 will do the same\n"
+    "'C' will cycle the display mode (Fire, Blob, Velocity and Pressure). The numbers 1 to 0 will do the same\n"
     "Use the mouse scroll wheel to change the tool size for particles.\n"
     "The spacebar can be used to pause physics.\n"
     "'P' will take a screenshot and save it into the current directory.\n"
