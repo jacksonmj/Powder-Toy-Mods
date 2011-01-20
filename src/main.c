@@ -1,12 +1,13 @@
 /**
  * Powder Toy - Main source
  *
- * Copyright (c) 2008 - 2010 Stanislaw Skowronek.
- * Copyright (c) 2010 Simon Robertshaw
- * Copyright (c) 2010 Skresanov Savely
- * Copyright (c) 2010 Bryan Hoyle
- * Copyright (c) 2010 Nathan Cousins
- * Copyright (c) 2010 cracker64
+ * Copyright (c) 2008 - 2011 Stanislaw Skowronek.
+ * Copyright (c) 2010 - 2011 Simon Robertshaw
+ * Copyright (c) 2010 - 2011 Skresanov Savely
+ * Copyright (c) 2010 - 2011 Bryan Hoyle
+ * Copyright (c) 2010 - 2011 Nathan Cousins
+ * Copyright (c) 2010 - 2011 cracker64
+ * Copyright (c) 2010 - 2011 Murtaugh
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,7 +44,7 @@
 #include <defines.h>
 #include <powder.h>
 #include <graphics.h>
-#include <version.h>
+//#include <version.h>
 #include <http.h>
 #include <md5.h>
 #include <update.h>
@@ -54,7 +55,7 @@
 static const char *it_msg =
     "\brThe Powder Toy - http://powdertoy.co.uk/\n"
     "\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\n"
-    "\brModified by Murtaugh a.k.a Mur - 01-02-2011.\n"
+    "\brModified by Murtaugh a.k.a Mur - 01-20-2011.\n"
     "\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\x7F\n"
     "\bgControl+C/V/X are Copy, Paste and cut respectively.\n"
     "\bgTo choose a material, hover over once of the icons on the right, it will show a selection of elements in that group.\n"
@@ -68,17 +69,18 @@ static const char *it_msg =
     "\n\boUse 'Z' for a zoom tool. Click to make the drawable zoom window stay around. Use the wheel to change the zoom strength\n"
     "Use 'S' to save parts of the window as 'stamps'.\n"
     "'L' will load the most recent stamp, 'K' shows a library of stamps you saved.\n"
-    "'C' will cycle the display mode (Fire, Blob, Velocity and Pressure). The numbers 1 to 0 will do the same\n"
+    "'C' will cycle the display mode (Fire, Blob, Velocity, ect.). The numbers on the keyboard do the same\n"
     "Use the mouse scroll wheel to change the tool size for particles.\n"
     "The spacebar can be used to pause physics.\n"
     "'P' will take a screenshot and save it into the current directory.\n"
     "\n"
-    "\bgCopyright (c) 2008-10 Stanislaw K Skowronek (\brhttp://powder.unaligned.org\bg, \bbirc.unaligned.org #wtf\bg)\n"
+    "\bgCopyright (c) 2008-11 Stanislaw K Skowronek (\brhttp://powder.unaligned.org\bg, \bbirc.unaligned.org #wtf\bg)\n"
     "\bgCopyright (c) 2010-11 Simon Robertshaw (\brhttp://powdertoy.co.uk\bg, \bbirc.freenode.net #powder\bg)\n"
     "\bgCopyright (c) 2010-11 Skresanov Savely (Stickman)\n"
     "\bgCopyright (c) 2010-11 cracker64\n"
     "\bgCopyright (c) 2010-11 Bryan Hoyle (New elements)\n"
     "\bgCopyright (c) 2010-11 Nathan Cousins (New elements, small engine mods.)\n"
+    "\bgCopyright (c) 2010-11 Murtaugh (Mod, Fancy effects)\n"
     "\n"
     "\bgTo use online features such as saving, you need to register at: \brhttp://powdertoy.co.uk/Register.html"
     ;
@@ -135,6 +137,7 @@ int core_count()
 }
 
 int mousex = 0, mousey = 0;  //They contain mouse position
+int kiosk_enable = 0;
 
 void sdl_seticon(void)
 {
@@ -478,6 +481,7 @@ int parse_save(void *save, int size, int replace, int x0, int y0)
 
     if(replace)
     {
+		gravityMode = 1;
         memset(bmap, 0, sizeof(bmap));
         memset(emap, 0, sizeof(emap));
         memset(signs, 0, sizeof(signs));
@@ -730,7 +734,7 @@ int parse_save(void *save, int size, int replace, int x0, int y0)
                         if(new_format) {
                             ttv = (d[p++])<<8;
                             ttv |= (d[p++]);
-                            parts[i-1].temp = ttv;
+                            parts[i-1].temp = ttv + 0.15;
                         } else {
                             parts[i-1].temp = (d[p++]*((MAX_TEMP+(-MIN_TEMP))/255))+MIN_TEMP;
                         }
@@ -1158,6 +1162,12 @@ int main(int argc, char *argv[])
         {
             hud_enable = 0;
         }
+		else if(!strncmp(argv[i], "kiosk", 5))
+        {
+            kiosk_enable = 1;
+			sdl_scale = 2;
+			hud_enable = 0;
+        }
     }
 
     save_presets(0);
@@ -1327,6 +1337,20 @@ int main(int argc, char *argv[])
         {
             framerender = 1;
         }
+	if(sdl_key==SDLK_F11)
+        {
+	if(kiosk_enable==0)
+	{
+        	kiosk_enable = 1;
+		sdl_scrn=SDL_SetVideoMode(XRES*sdl_scale + BARSIZE*sdl_scale,YRES*sdl_scale + MENUSIZE*sdl_scale,32,SDL_FULLSCREEN|SDL_SWSURFACE);
+		//sdl_scrn=SDL_SetVideoMode(XRES*1.7 + BARSIZE*1.7,YRES*1.7 + MENUSIZE*1.7,32,SDL_FULLSCREEN|SDL_SWSURFACE);
+	}
+	else if(kiosk_enable==1)
+	{
+        	kiosk_enable = 0;
+		sdl_scrn=SDL_SetVideoMode(XRES*sdl_scale + BARSIZE*sdl_scale,YRES*sdl_scale + MENUSIZE*sdl_scale,32,SDL_SWSURFACE);
+	}
+        }
         if((sdl_key=='l' || sdl_key=='k') && stamps[0].name[0])
         {
             if(load_mode)
@@ -1358,7 +1382,7 @@ int main(int argc, char *argv[])
                     free(load_data);
             }
         }
-        if(sdl_key=='s' && (sdl_mod & (KMOD_CTRL)))
+        if(sdl_key=='s' && (sdl_mod & (KMOD_CTRL)) || (sdl_key=='s' && !isplayer2))
         {
             if(it > 50)
                 it = 50;
@@ -1404,10 +1428,15 @@ int main(int argc, char *argv[])
         {
             set_cmode(CM_CRACK);
         }
+	if(sdl_key=='1'&& (sdl_mod & (KMOD_SHIFT)) && DEBUG_MODE)
+        {
+            set_cmode(CM_LIFE);
+        }
 	if(sdl_key==SDLK_TAB)
 	{
 		CURRENT_BRUSH =(CURRENT_BRUSH + 1)%BRUSH_NUM ;
 	}
+
         if(sdl_key==SDLK_LEFTBRACKET) {
             if(sdl_zoom_trig==1)
             {
@@ -1488,7 +1517,7 @@ int main(int argc, char *argv[])
                     bsy = 0;
             }
         }
-	if(sdl_key=='d'&&(sdl_mod & (KMOD_CTRL)))
+	if(sdl_key=='d'&&(sdl_mod & (KMOD_CTRL)) || (sdl_key=='d' && !isplayer2))
 		DEBUG_MODE = !DEBUG_MODE;
 	if(sdl_key=='i')
 	{
@@ -1512,6 +1541,40 @@ int main(int argc, char *argv[])
 	    else 
 		GRID_MODE = (GRID_MODE+1)%10;
 	}
+	if(sdl_key=='=')
+	{
+	    int nx, ny;
+		for(nx = 0;nx<XRES/CELL;nx++)
+			for(ny = 0;ny<YRES/CELL;ny++)
+			{
+				pv[ny][nx] = 0;
+				vx[ny][nx] = 0;
+				vy[ny][nx] = 0;				
+			}
+	}
+		
+		if(sdl_key=='w' && (!isplayer2 || (sdl_mod & (KMOD_SHIFT)))) //Gravity, by Moach
+		{
+			++gravityMode; // cycle gravity mode
+			itc = 51;
+			
+			switch (gravityMode)
+			{
+				default:
+					gravityMode = 0;
+				case 0:
+					strcpy(itc_msg, "Gravity: Off");
+					break;
+				case 1:
+					strcpy(itc_msg, "Gravity: Vertical");
+					break;
+				case 2:
+					strcpy(itc_msg, "Gravity: Radial");
+					break;
+					
+			}
+		}
+		
 	if(sdl_key=='t')
             VINE_MODE = !VINE_MODE;
         if(sdl_key==SDLK_SPACE)
@@ -1587,10 +1650,33 @@ int main(int argc, char *argv[])
                 }
         }
 #ifdef INTERNAL
-        if(sdl_key=='v')
-            vs = !vs;
+		int counterthing;
+        if(sdl_key=='v'&&!(sdl_mod & (KMOD_LCTRL|KMOD_RCTRL)))
+		{
+			if(sdl_mod & (KMOD_SHIFT)){
+				if(vs>=1)
+					vs = 0;
+				else
+					vs = 3;//every other frame
+			}
+			else
+			{
+				if(vs>=1)
+					vs = 0;
+				else
+					vs = 1;
+			}
+			counterthing = 0;
+		}
         if(vs)
-            dump_frame(vid_buf, XRES, YRES, XRES+BARSIZE);
+		{
+			if(counterthing+1>=vs)
+			{
+				dump_frame(vid_buf, XRES, YRES, XRES+BARSIZE);
+				counterthing = 0;
+			}
+			counterthing = (counterthing+1)%3;
+		}
 #endif
 
         if(sdl_wheel)
@@ -2008,6 +2094,12 @@ int main(int argc, char *argv[])
                         svf_id[0] = 0;
                         svf_name[0] = 0;
                         svf_tags[0] = 0;
+						svf_description[0] = 0;
+						gravityMode = 1;
+						isplayer2 = 0;
+						isplayer = 0;
+						ISSPAWN1 = 0;
+						ISSPAWN2 = 0;
 
                         memset(fire_bg, 0, XRES*YRES*PIXELSIZE);
                         memset(fire_r, 0, sizeof(fire_r));
@@ -2049,10 +2141,16 @@ int main(int argc, char *argv[])
 					}
                     if(x>=(XRES+BARSIZE-(510-476)) && x<=(XRES+BARSIZE-(510-491)) && !bq)
                     {
-                        if(b & SDL_BUTTON_LMASK)
+                        if(b & SDL_BUTTON_LMASK){
                             set_cmode((cmode+1) % CM_COUNT);
-                        if(b & SDL_BUTTON_RMASK)
-                            set_cmode((cmode+(CM_COUNT-1)) % CM_COUNT);
+						}
+                        if(b & SDL_BUTTON_RMASK){
+							if((cmode+(CM_COUNT-1)) % CM_COUNT == CM_LIFE) {
+								set_cmode(CM_GRAD);
+							} else {
+								set_cmode((cmode+(CM_COUNT-1)) % CM_COUNT);
+							}
+						}
                         save_presets(0);
                     }
                     if(x>=(XRES+BARSIZE-(510-494)) && x<=(XRES+BARSIZE-(510-509)) && !bq)
@@ -2123,7 +2221,7 @@ int main(int argc, char *argv[])
                     {
 			if(sdl_mod & (KMOD_CAPS))
 				c = 0;
-                        if(c!=WL_STREAM&&c!=SPC_AIR&&c!=SPC_HEAT&&c!=SPC_COOL&&c!=SPC_VACUUM&&!REPLACE_MODE)
+                        if(c!=WL_STREAM+100&&c!=SPC_AIR&&c!=SPC_HEAT&&c!=SPC_COOL&&c!=SPC_VACUUM&&!REPLACE_MODE)
                             flood_parts(x, y, c, -1, -1);
                         lx = x;
                         ly = y;
@@ -2341,10 +2439,10 @@ int main(int argc, char *argv[])
                 pastFPS = currentTime;
             }
 			
-			sprintf(uitext, "Murtaugh's Mod 1.3\nVersion %d Beta %d FPS:%d\nParts:%d Generation:%d", SAVE_VERSION, MINOR_VERSION, FPSB, NUM_PARTS,GENERATION);
+			sprintf(uitext, "Murtaugh's Mod 1.6\nVersion %d.%d FPS:%d\nParts:%d Generation:%d", SAVE_VERSION, MINOR_VERSION, FPSB, NUM_PARTS,GENERATION);
 
 			if(DEBUG_MODE)
-				sprintf(uitext, "Murtaugh's Mod 1.3 \n Version %d.%d FPS:%d \n Parts:%d Generation:%d", SAVE_VERSION, MINOR_VERSION, FPSB, NUM_PARTS,GENERATION);
+				sprintf(uitext, "Murtaugh's Mod 1.6\nVersion %d.%d FPS:%d\nParts:%d Generation:%d", SAVE_VERSION, MINOR_VERSION, FPSB, NUM_PARTS,GENERATION);
 
 			if(REPLACE_MODE)
 				strappend(uitext, " [REPLACE MODE]");

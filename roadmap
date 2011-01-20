@@ -6,3 +6,51 @@ Focus on scalability
 stability, possibly not use -O3 on linux, inlines where possible.
 performance.
 Multithreading?
+
+Murtaughs roadmap:
+Mur's V1.0-V1.2:
+Added these elements:
+	BASE - Neutralizes ACID and produces SLTW. Deadly/Poisonous for stickman;
+	FRON - Freon, cold gas;
+	FOIL - Freon, but liquid. Also "refrigerator oil";
+	MUR - Crazy element, a kind of crazy gas that explodes and melt anything;
+	HYDR - Hydrogen, very flammable gas, produces water when mixed with oxygen;
+	ROCK - Rock/Solid stone. It is like brick, but stronger;
+	ALCH - Alcohol. Burns slowly Reduces stickman life;
+	PLST - Plastic. Deforms but not disappear. (At first, I thought this one is hard to code but it is very, very easy.);
+	PSTR - Plaster. A fragile white-ish solid. turns into DUST under pressure;
+	MUD - Self-explanatory. Turns into GRND when heated;
+	GRND - Ground. Solid, turns into MUD when mixed with water, into PGRN under pressure;
+	PGRN - Powder ground. Turns into MUD when mixed with water;
+	HEHC - Higly efficient heat conductor. (NOT instantaneous!) Undestructable;
+	CORE - Singularity core. Reacts with almost anything causing a huge explosion. Best reacts with photons and neutrons;
+	VIRU - A crazy virus. "Shine on your crazy diamond--Pink Floyd".
+
+Mur's V1.4:
+Fixed VIRU and other small things;
+Fixed many bugs like Segmentation fault when MUR hits walls.
+
+Mur's V1.5:
+Added automatic blendpixel to fancy mode (automatic fancy effects) -- Added to official :)
+
+Mur's V1.6:
+Upgraded to V45.2 source code;
+Added fullscreen for F11 (Push F11 to go fullscreen; Push F11 again to exit fullscreen);
+Fixed dates at the opening screen;
+Removed version.h, because it became uselles since a few weeks;
+Added glow to MUR;
+Fixed some issues with CORE;
+Fixed HEHC "ins" to 251;
+Added signs for current type, current life (not GoL!) and generation ({type}, {life} and {GoL});
+PNLT grows over PGND and GRND in vine mode;
+Added these ellements:
+	BALL - Bouncy ball. A bit uselles. Also it is a moveable solid.
+	MBMB - Murtaugh's version for BOMB. Another moveable solid.
+	SEDS - Seeds. Light dust, flammable. Grow when mixed with PGND an GRND
+
+TODO:
+Add clickable signs;
+Add LEAD - Neutron absorber, current controller;
+Add MERC - Mercurium, expands/compress with heat/cold;
+Add CAFR - Carbon film resistor;
+

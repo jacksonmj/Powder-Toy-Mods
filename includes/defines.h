@@ -8,9 +8,9 @@
 #endif
 
 #define SAVE_VERSION 45
-#define MINOR_VERSION 0
-#define IDENT_VERSION "G" //Change this if you're not Simon! It should be a single letter.
-#define BETA
+#define MINOR_VERSION 2
+#define IDENT_VERSION "G" //Change this if you're not Simon! It should be a single letter. -- If you change this, it brokes the save opening. --Mur
+//#define BETA
 
 #define SERVER "powdertoy.co.uk"
 
@@ -27,6 +27,9 @@
 #define XRES	612
 #define YRES	384
 #define NPART XRES*YRES
+
+#define XCNTR   306
+#define YCNTR   192
 
 #define MAX_DISTANCE sqrt(pow(XRES, 2)+pow(YRES, 2))
 
@@ -58,7 +61,7 @@ extern unsigned char ZSIZE;
 #define STAMP_Y 4
 #define STAMP_MAX 120
 
-#define NGOL 13
+#define NGOL 20
 
 #define CIRCLE_BRUSH 0
 #define SQUARE_BRUSH 1
@@ -98,6 +101,8 @@ int GRAV_G2;
 int GRAV_B2;
 
 extern int legacy_enable;
+
+extern int kiosk_enable;
 
 extern int sys_pause;
 extern int framerender;

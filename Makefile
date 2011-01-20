@@ -5,7 +5,7 @@ OFLAGS := -O3 -ffast-math -ftree-vectorize -funsafe-math-optimizations
 LFLAGS := -lSDL -lm -lbz2 
 LFLAGS_X := -lm -lbz2 -lSDLmain
 MFLAGS_SSE3 := -march=native -DX86 -DX86_SSE3 -msse3
-MFLAGS_SSE2 := -march=native-DX86 -DX86_SSE2 -msse2
+MFLAGS_SSE2 := -march=native -DX86 -DX86_SSE2 -msse2
 MFLAGS_SSE := -march=native -DX86 -DX86_SSE
 FLAGS_DBUG := -Wall -std=c99 -D_POSIX_C_SOURCE=200112L -pg -DX86 -DX86_SSE3 -msse3 -lSDL -lm -lbz2 -g
 COMPILER := gcc
@@ -45,6 +45,9 @@ powder-64-sse2: $(SOURCES)
 	$(COMPILER) -m64 -o$@ $(CFLAGS) $(OFLAGS) $(LFLAGS) $(MFLAGS_SSE2) $(SOURCES) -DLIN64
 	strip $@
 	mv $@ build
+
+powder-icc: $(SOURCES)
+       /opt/intel/Compiler/11.1/073/bin/intel64/icc -m64 -o$@ -Iincludes/ -O2 -march=core2 -msse3 -mfpmath=sse -lSDL -lbz2 -lm -xW $(SOURCES) -std=c99 -D_POSIX_C_SOURCE=200112L
 
 powder-res.o: powder-res.rc powder.ico
 	i586-mingw32msvc-windres powder-res.rc powder-res.o
