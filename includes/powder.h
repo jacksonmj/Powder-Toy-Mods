@@ -208,7 +208,29 @@
 #define PT_BALL 157
 #define PT_MBMB 158
 #define PT_SEDS 159
-#define PT_NUM  160
+#define PT_PROT 160
+#define PT_ELEC 161
+#define PT_SLPH 162
+#define PT_DYNA 163
+#define PT_TNT 164
+#define PT_ALUM 165
+#define PT_BRAL 166
+#define PT_CFRE 167
+#define PT_LEAD 168
+#define PT_UNWR 169
+#define PT_STEL 170
+#define PT_POWV 171
+#define PT_COPY 172
+#define PT_PAT1 173
+#define PT_PAT2 174
+#define PT_FLAM 175
+#define PT_RULH 176
+#define PT_LFRD 177
+#define PT_LIWD 178
+#define PT_VOTE 179
+#define PT_VT45 180
+#define PT_SERV 181
+#define PT_NUM  182
 
 #define R_TEMP 22
 #define MAX_TEMP 9999
@@ -446,8 +468,8 @@ static const part_type ptypes[PT_NUM] =
     {"REPL",	PIXPACK(0x259588),	0.0f,	0.00f * CFDS,	0.90f,	0.00f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	0,	0,	1,	100,	SC_LIFE,	9000.0f,			40,	"B1357/S1357", TYPE_SOLID|PROP_LIFE, NULL},
     {"MYST",	PIXPACK(0x0C3C00),	0.0f,	0.00f * CFDS,	0.90f,	0.00f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	0,	0,	1,	100,	SC_LIFE,	9000.0f,			40,	"B3458/S05678", TYPE_SOLID|PROP_LIFE, NULL},
     {"BOYL",	PIXPACK(0x0A3200),	1.0f,	0.01f * CFDS,	0.99f,	0.30f,	-0.1f,	0.0f,	0.18f,	0.000f	* CFDS,	0,	0,	0,	0,	1,	1,	1,	SC_GAS,		R_TEMP+2.0f	+273.15f,	42,	"Boyle, variable pressure gas. Expands when heated.", TYPE_GAS, NULL},
-    {"HEHC",	PIXPACK(0x5EBEC4),	0.0f,	0.00f * CFDS,   0.00f,  0.00f,  0.0f,   0.0f,   0.0f,   0.00f   * CFDS, 0,      0,	0,	0,	0,	1,	100,	SC_MUR,		R_TEMP+0.0f	+273.15f,	251,	"Higly efficient heat conductor.", TYPE_SOLID, NULL},
-    {"BASE",	PIXPACK(0x12AA00),	0.6f,	0.01f * CFDS,	0.98f,	0.95f,	0.0f,	0.1f,	0.00f,	0.000f	* CFDS,	2,	40,	0,	0,	0,	1,	11,	SC_MUR,		R_TEMP+0.0f	+273.15f,	34,	"Base. Neutralizes ACID and produce SLTW. Poisonous for stickman.", TYPE_LIQUID|PROP_NEUTPENETRATE, NULL},
+    {"HEHC",	PIXPACK(0x5EBEC4),	0.0f,	0.00f * CFDS,   0.00f,  0.00f,  0.0f,   0.0f,   0.0f,   0.00f   * CFDS, 0,      0,	0,	0,	0,	1,	100,	SC_MURS,	R_TEMP+0.0f	+273.15f,	251,	"Higly efficient heat conductor.", TYPE_SOLID, NULL},
+    {"BASE",	PIXPACK(0x12AA00),	0.6f,	0.01f * CFDS,	0.98f,	0.95f,	0.0f,	0.1f,	0.00f,	0.000f	* CFDS,	2,	40,	0,	0,	0,	1,	11,	SC_MUR,		R_TEMP+0.0f	+273.15f,	34,	"Base. Neutralizes ACID and produce SLTW. Poisonous for stickman. Also neutralizes radioactive things,", TYPE_LIQUID|PROP_NEUTPENETRATE, NULL},
     {"FRON",	PIXPACK(0x606030),	0.9f,	0.01f * CFDS,	0.99f,	0.30f,	-0.1f,	0.0f,	1.0f,	0.0000  * CFDS, 0,	10,	0,	0,	0,	1,	1,	SC_MUR,		R_TEMP-34.0f	+273.15f,	163,	"Freon. Cold gas.", TYPE_GAS|PROP_NEUTPENETRATE, NULL},
     {"FOIL",	PIXPACK(0x505020),	0.6f,	0.01f * CFDS,	0.98f,	0.95f,	0.1f,	0.1f,	0.00f,	0.0000  * CFDS, 2,	10,	0,	0,	1,	1,	20,	SC_MUR,		R_TEMP-44.0f	+273.15f,	163,	"Freon, but oil. Also refrigerator oil.", TYPE_LIQUID|PROP_NEUTPENETRATE, NULL},
     {"HYDR",    PIXPACK(0X10A0CC),	0.9f,   0.00f * CFDS,   0.99f,  0.30f,  -0.1f,  0.0f,   4.00f,  0.000f  * CFDS, 0,	1000,	0,	0,  	0,	1,	1,	SC_MUR,		R_TEMP+0.0f	+273.15f,	28,     "Hydrogen, very flammable gas. Produces DSTW when mixed with oxygen.", TYPE_GAS|PROP_NEUTPENETRATE, NULL},
@@ -457,13 +479,35 @@ static const part_type ptypes[PT_NUM] =
     {"GRND",	PIXPACK(0x703500),	0.0f,	0.00f * CFDS,	0.00f,	0.00f,	0.0f,	0.0f,	0.00f,	0.0000f * CFDS, 0,	0,	0,	1,  	20,	1,	100,	SC_MUR,		R_TEMP+0.0f	+273.15f,	120,	"Ground. Solid, turns into MUD when mixed with water, into PGND under pressure.", TYPE_SOLID|PROP_NEUTPENETRATE, NULL},
     {"PGND",	PIXPACK(0x623100),	0.6f,	0.01f * CFDS,	0.90f,	0.85f,	0.0f,	0.2f,	0.00f,	0.0000f * CFDS, 1,      0,	0,	1, 	22,	1,	65,     SC_MUR,		R_TEMP+0.0f	+273.15f,	120,	"Powder ground. Turns into MUD when mixed with water.", TYPE_PART|PROP_NEUTPENETRATE, NULL},
     {"MUD",	PIXPACK(0x603000),	0.1f,	0.01f * CFDS,	0.99f,	0.97f,	0.0f,	0.2f,	0.00f,	0.0000f * CFDS,	2,	0,	0,	1,	22,	1,	48,	SC_MUR,		R_TEMP+0.0f	+273.15f,	120,	"Mud. Liquid. Turns into SGND when heated.", TYPE_LIQUID|PROP_NEUTPENETRATE, NULL},
-    {"MUR",	PIXPACK(0x0AE3F2),	0.0f,	0.10f * CFDS,	1.00f,	1.00f,	0.1f,	0.0f,	6.00f,	0.002f	* CFDS,	1,	0,	0,	0,	0,	1,	-1,	SC_MUR,		9999.00f,			70,	"Murtaugh :). Discover by yourself", TYPE_GAS|PROP_BLACK|PROP_NEUTABSORB, NULL},
+    {"MUR",	PIXPACK(0x0AE3F2),	0.0f,	0.10f * CFDS,	1.00f,	1.00f,	0.1f,	0.0f,	6.00f,	0.002f	* CFDS,	1,	0,	0,	0,	0,	1,	-1,	SC_MURS,	9999.00f,			70,	"Gas from hell.", TYPE_GAS|PROP_BLACK|PROP_NEUTABSORB, NULL},
     {"PLST",	PIXPACK(0x1A1A1A),	0.1f,	0.00f * CFDS,	0.97f,	0.90f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	40,	0,	0,	12,	1,	100,	SC_MUR,		R_TEMP+0.0f	+273.15f,	75,	"Plastic. Deforms under pressure. Burns slowly", TYPE_SOLID | PROP_NEUTPENETRATE, NULL},
-    {"CORE",	PIXPACK(0x5A5A5A),	0.0f,	0.00f * CFDS,	0.00f,	0.00f,	0.0f,	0.0f,	0.00f,	-0.0001f* CFDS, 0,	50000,	100,	0,  	0,	1,	100,	SC_MUR,		9999.00f,			255,	"Singularity core. Explodes in contact with almost everything. Better reacts with photons.", TYPE_SOLID|PROP_BLACK|PROP_NEUTABSORB, NULL},
-    {"VIRU",	PIXPACK(0x75196E),	0.0f,	0.01f * CFDS,	0.99f,	0.99f,	-0.1f,	0.2f,	0.00f,	0.000f	* CFDS,	1,	0,	0,	0,	0,	1,	99,	SC_MUR,		R_TEMP+0.0f	+273.15f,	1,	"Virus. Try to figure out.", TYPE_PART, NULL},
-    {"BALL",	PIXPACK(0x65095E),	0.0f,	0.00f * CFDS,	0.00f,	0.00f,	0.0f,	1.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	0,	0,	1,	100,	SC_MUR,		R_TEMP+0.0f	+273.15f,	1,	"Bouncy ball. A bit useless. Also it is a moveable solid", TYPE_SOLID, NULL},
-    {"MBMB",	PIXPACK(0xFFF288),	0.6f,	0.01f * CFDS,	0.98f,	0.95f,	-0.1f,	1.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	0,	0,	1,	100,	SC_MUR,		9999.0f,			1,	"Murtaughs version of BOMB. Moveable solid", TYPE_SOLID, NULL},
-    {"SEDS",	PIXPACK(0x54E386),	0.7f,	0.02f * CFDS,	0.96f,	0.80f,	0.0f,	0.2f,	0.00f,	0.000f	* CFDS,	1,	10,	0,	0,	30,	1,	90,	SC_MUR,		R_TEMP+0.0f	+273.15f,	70,	"Seeds. Light dust, flammable. Grow when mixed with PGND an GRND", TYPE_PART, NULL},
+    {"CORE",	PIXPACK(0x5A5A5A),	0.0f,	0.00f * CFDS,	0.00f,	0.00f,	0.0f,	0.0f,	0.00f,	-0.0001f* CFDS, 0,	50000,	100,	0,  	0,	1,	100,	SC_MURR,	9999.00f,			251,	"Singularity core. Explodes in contact with almost everything. Better reacts with photons.", TYPE_SOLID|PROP_BLACK|PROP_NEUTABSORB, NULL},
+    {"VIRU",	PIXPACK(0x75196E),	0.0f,	0.01f * CFDS,	0.99f,	0.99f,	-0.1f,	0.2f,	0.00f,	0.000f	* CFDS,	1,	0,	0,	0,	0,	1,	99,	SC_MURS,	R_TEMP+0.0f	+273.15f,	1,	"Virus. Try to figure out.", TYPE_PART, NULL},
+    {"BALL",	PIXPACK(0x65095E),	0.0f,	0.00f * CFDS,	0.00f,	0.00f,	0.0f,	1.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	0,	0,	1,	100,	SC_MURS,	R_TEMP+0.0f	+273.15f,	1,	"Bouncy ball. A bit useless. Also it is a moveable solid", TYPE_SOLID, NULL},
+    {"MBMB",	PIXPACK(0xFFF288),	0.6f,	0.01f * CFDS,	0.98f,	0.95f,	-0.1f,	1.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	0,	0,	1,	100,	SC_MURS,	9999.0f,			1,	"Murtaughs version of BOMB. Moveable solid", TYPE_SOLID, NULL},
+    {"SEDS",	PIXPACK(0x54E386),	0.7f,	0.02f * CFDS,	0.96f,	0.80f,	0.0f,	0.2f,	0.00f,	0.000f	* CFDS,	1,	10,	0,	0,	30,	1,	90,	SC_MUR,		R_TEMP+0.0f	+273.15f,	70,	"Seeds. Light dust, flammable. Grow iwhen in contact with PGND an GRND", TYPE_PART, NULL},
+    {"PROT",	PIXPACK(0xE01B4C),	0.0f,	0.00f * CFDS,	1.00f,	1.00f,	-0.99f,	0.0f,	0.05f,	0.002f	* CFDS,	0,	0,	0,	0,	0,	1,	-1,	SC_MURR,	R_TEMP+4.0f	+273.15f,	60,	"Protons. Turns into HYDR when mixed with ELEC", TYPE_ENERGY, NULL},
+    {"ELEC",	PIXPACK(0x575757),	0.0f,	0.00f * CFDS,	1.00f,	1.00f,	-0.99f,	0.0f,	0.05f,	0.002f	* CFDS,	0,	0,	0,	0,	0,	1,	-1,	SC_MURR,	R_TEMP+4.0f	+273.15f,	60,	"Electrons. Transfers current to METL.", TYPE_ENERGY, NULL},
+    {"SLPH",	PIXPACK(0xEEF522),	0.4f,	0.04f * CFDS,	0.94f,	0.95f,	0.0f,	0.2f,	0.00f,	0.000f	* CFDS,	1,	0,	0,	0,	0,	1,	70,	SC_MUR,		R_TEMP+5.0f	+273.15f,	150,	"Sulphur/Sulfur. Mix with DSTW to create ACID", TYPE_PART, NULL},
+    {"DYNA",	PIXPACK(0xD93030),	0.0f,	0.00f * CFDS,	0.90f,	0.00f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	0,	1,	1,	100,	SC_MUR,		R_TEMP+0.0f	+273.15f,	88,	"Dynamite. Solid. Pressure explosive.", TYPE_SOLID | PROP_NEUTPENETRATE, NULL},
+    {"TNT",	PIXPACK(0xC8D930),	0.7f,	0.02f * CFDS,	0.94f,	0.80f,	-0.1f,	0.2f,	0.00f,	0.000f	* CFDS,	1,	0,	0,	0,	1,	1,	87,	SC_MUR,		R_TEMP+0.0f	+273.15f,	97,	"Trinitrotoluene. Very explosive powder. Mix with WATR to make DYNA.", TYPE_PART, NULL},
+    {"ALUM",	PIXPACK(0xB0B0B0),	0.0f,	0.00f * CFDS,	0.90f,	0.00f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	1,	18,	1,	100,	SC_MURE,	R_TEMP+0.0f	+273.15f,	211,	"Aluminium. Solid. Conducts electricity. Breaks under high pressure.", TYPE_SOLID|PROP_CONDUCTS, NULL},
+    {"BRAL",	PIXPACK(0x909090),	0.4f,	0.04f * CFDS,	0.94f,	0.95f,	-0.1f,	0.3f,	0.00f,	0.000f	* CFDS,	1,	0,	0,	1,	18,	1,	70,	SC_MURE,	R_TEMP+0.0f	+273.15f,	211,	"Aluminium in powder form. Mix with BRMT to create THRM.", TYPE_PART|PROP_CONDUCTS, NULL},
+    {"CFRE",	PIXPACK(0x0BDE98),	0.0f,	0.00f * CFDS,	0.90f,	0.00f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	0,	10,	1,	100,	SC_MURE,	R_TEMP+0.0f	+273.15f,	180,	"Carbon film resistor.", TYPE_SOLID|PROP_CONDUCTS, NULL},
+    {"LEAD",	PIXPACK(0x4F4F4F),	0.0f,	0.00f * CFDS,	0.90f,	0.00f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	0,	15,	1,	100,	SC_MURE,	R_TEMP+0.0f	+273.15f,	155,	"Lead. Neutron absorber, slow conductor.", TYPE_SOLID|PROP_CONDUCTS, NULL},
+    {"UNWR",	PIXPACK(0x303050),	0.0f,	0.00f * CFDS,	0.90f,	0.00f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	0,	5,	1,	100,	SC_MURE,	R_TEMP+0.0f	+273.15f,	210,	"Unmeltable wire.", TYPE_SOLID|PROP_CONDUCTS, NULL},
+    {"STEL",	PIXPACK(0xDBDBDB),	0.0f,	0.00f * CFDS,	0.90f,	0.00f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	1,	1,	1,	100,	SC_MURE,	R_TEMP+0.0f	+273.15f,	179,	"Steel. Conducts electricity. Melts at very high temperature.", TYPE_SOLID|PROP_CONDUCTS, NULL},
+    {"POWV",	PIXPACK(0x891B1B),	0.4f,	0.04f * CFDS,	0.94f,	0.95f,	-0.1f,	0.3f,	0.00f,	0.000f	* CFDS,	1,	0,	0,	0,	0,	1,	85,	SC_MURS,	R_TEMP+0.0f	+273.15f,	251,	"VOID in powder form", TYPE_PART, NULL},
+    {"COPY",	PIXPACK(0xFFE020),	0.4f,	0.04f * CFDS,	0.94f,	0.95f,	-0.1f,	0.3f,	0.00f,	0.000f	* CFDS,	1,	0,	0,	0,	0,	1,	85,	SC_MURS,	R_TEMP+0.0f	+273.15f,	251,	"Copy powder.", TYPE_PART, NULL},
+    {"PAT1",	PIXPACK(0xF0BB2B),	0.0f,	0.00f * CFDS,	0.90f,	0.00f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	0,	0,	1,	100,	SC_MURL,	9000.0f,			40,	"Pattern 1 B1234567/S01234567", TYPE_SOLID|PROP_LIFE, NULL},
+    {"PAT2",	PIXPACK(0x2DB9E3),	0.0f,	0.00f * CFDS,	0.90f,	0.00f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	0,	0,	1,	100,	SC_MURL,	9000.0f,			40,	"Pattern 2 B1234567/S0", TYPE_SOLID|PROP_LIFE, NULL},
+    {"FLAM",	PIXPACK(0x3153DE),	0.0f,	0.00f * CFDS,	0.90f,	0.00f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	0,	0,	1,	100,	SC_MURL,	9000.0f,			40,	"Flashing Maze B24/S1234", TYPE_SOLID|PROP_LIFE, NULL},
+    {"RULH",	PIXPACK(0xDE5931),	0.0f,	0.00f * CFDS,	0.90f,	0.00f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	0,	0,	1,	100,	SC_MURL,	9000.0f,			40,	"Rule H B2/S34", TYPE_SOLID|PROP_LIFE, NULL},
+    {"LFRD",	PIXPACK(0xC637FA),	0.0f,	0.00f * CFDS,	0.90f,	0.00f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	0,	0,	1,	100,	SC_MURL,	9000.0f,			40,	"Live Free or Die B0/S2", TYPE_SOLID|PROP_LIFE, NULL},
+    {"LIWD",	PIXPACK(0x1ED6AA),	0.0f,	0.00f * CFDS,	0.90f,	0.00f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	0,	0,	1,	100,	SC_MURL,	9000.0f,			40,	"Life Without Death B3/S012345678", TYPE_SOLID|PROP_LIFE, NULL},
+    {"VOTE",	PIXPACK(0x2FBF1F),	0.0f,	0.00f * CFDS,	0.90f,	0.00f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	0,	0,	1,	100,	SC_MURL,	9000.0f,			40,	"Vote B5678/S45678", TYPE_SOLID|PROP_LIFE, NULL},
+    {"VT45",	PIXPACK(0x0F9F0F),	0.0f,	0.00f * CFDS,	0.90f,	0.00f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	0,	0,	1,	100,	SC_MURL,	9000.0f,			40,	"Vote 4/5 B4678/S35678", TYPE_SOLID|PROP_LIFE, NULL},
+    {"SERV",	PIXPACK(0x00D5FF),	0.0f,	0.00f * CFDS,	0.90f,	0.00f,	0.0f,	0.0f,	0.00f,	0.000f	* CFDS,	0,	0,	0,	0,	0,	1,	100,	SC_MURL,	9000.0f,			40,	"Serviettes B234/S", TYPE_SOLID|PROP_LIFE, NULL},
     //Name		Colour		Advec	Airdrag		Airloss	Loss	Collid	Grav	Diffus	Hotair		Fal	Burn	Exp	Mel	Hrd	M	Weights	Section			H						Ins		Description
 };
 
@@ -630,6 +674,28 @@ static part_state pstates[PT_NUM] =
     /* BALL */ {ST_SOLID,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
     /* MBMB */ {ST_NONE,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
     /* SEDS */ {ST_SOLID,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* PROT */ {ST_GAS,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* ELEC */ {ST_GAS,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* SLPH */ {ST_SOLID,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* DYNA */ {ST_SOLID,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* TNT  */ {ST_SOLID,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* ALUM */ {ST_SOLID,	PT_NONE, 0.0f,		PT_LAVA, 933.15,	PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* BRAL */ {ST_SOLID,	PT_NONE, 0.0f,		PT_LAVA, 933.15,	PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* CFRE */ {ST_SOLID,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* LEAD */ {ST_SOLID,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* UNWR */ {ST_SOLID,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* STEL */ {ST_SOLID,	PT_NONE, 0.0f,		PT_LAVA, 5273.15f,	PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* POWV */ {ST_NONE,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* COPY */ {ST_NONE,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* GOL  */ {ST_NONE,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* GOL  */ {ST_NONE,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* GOL  */ {ST_NONE,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* GOL  */ {ST_NONE,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* GOL  */ {ST_NONE,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* GOL  */ {ST_NONE,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* GOL  */ {ST_NONE,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* GOL  */ {ST_NONE,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
+    /* GOL  */ {ST_NONE,	PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f,		PT_NONE, 0.0f},
 };
 static int grule[NGOL][9] = 
 {
@@ -654,6 +720,15 @@ static int grule[NGOL][9] =
 	{0,3,0,0,0,0,0,0,0},//GNAR
 	{0,3,0,3,0,3,0,3,0},//REPL
 	{1,0,0,2,2,3,1,1,3},//MYST
+	{1,3,3,3,3,3,3,3,0},//PAT1
+	{1,2,2,2,2,2,2,2,0},//PAT2
+	{0,1,3,1,3,0,0,0,0},//FLAM
+	{0,0,3,1,1,0,0,0,0},//RULH
+	{1,0,2,0,0,0,0,0,0},//LFRD
+	{1,1,1,3,1,1,1,1,1},//LIWD
+	{0,0,0,0,1,3,3,3,3},//VOTE
+	{0,0,0,1,2,1,3,3,3},//VT45
+	{0,0,2,2,2,0,0,0,0},//SERV
 };
 static int goltype[NGOL] = 
 {
@@ -676,6 +751,15 @@ static int goltype[NGOL] =
 	PT_GNAR,
 	PT_REPL,
 	PT_MYST,
+	PT_PAT1,
+	PT_PAT2,
+	PT_FLAM,
+	PT_RULH,
+	PT_LFRD,
+	PT_LIWD,
+	PT_VOTE,
+	PT_VT45,
+	PT_SERV,
 };
 static int loverule[9][9] =
 {
@@ -701,6 +785,7 @@ static int lolzrule[9][9] =
 	{0,1,0,0,0,0,0,1,0},
 	{0,1,0,0,0,0,0,1,0},
 };
+
 int portal[MAX_TEMP/100][8][80];
 float portaltemp[MAX_TEMP/100][8][80];
 int portalctype[MAX_TEMP/100][8][80];

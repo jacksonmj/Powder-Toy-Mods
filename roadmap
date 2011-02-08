@@ -44,13 +44,39 @@ Fixed HEHC "ins" to 251;
 Added signs for current type, current life (not GoL!) and generation ({type}, {life} and {GoL});
 PNLT grows over PGND and GRND in vine mode;
 Added these ellements:
-	BALL - Bouncy ball. A bit uselles. Also it is a moveable solid.
-	MBMB - Murtaugh's version for BOMB. Another moveable solid.
-	SEDS - Seeds. Light dust, flammable. Grow when mixed with PGND an GRND
+	BALL - Bouncy ball. A bit uselles. Also it is a moveable solid;
+	MBMB - Murtaugh's version for BOMB. Another moveable solid;
+	SEDS - Seeds. Light dust, flammable. Grow when mixed with PGND an GRND.
+
+Mur's V1.7:
+Reorganized menu;
+Added these elements:
+	PROT - Protons. Turns into HYDR when mixed with ELEC;
+	ELEC - Electrons. Transfers current to METL;
+	SLPH - Sulphur/Sulfur. Mix with DSTW to create ACID;
+	DYNA - Dynamite. Solid. Pressure explosive;
+	TNT  - Trinitrotoluene. Very explosive powder. Mix with WATR to create DYNA;
+	ALUM - Aluminium. Solid. Conducts electricity. Breaks under high pressure;
+	BRAL - Aluminium in powder form. Mix with BRMT to create THRM;
+	CFRE - Carbon film resistor;
+	LEAD - Lead. Neutron absorber, slow conductor;
+	UNWR - Unmeltable wire;
+	STEL - Steel. Conducts electricity. Melts at very high temperature;
+	POWV - VOID in powder form;
+	COPY - Copy powder.
+Added these GoL particles:
+	PAT1 - Pattern 1 B1234567/S0123456;
+	PAT2 - Pattern 2 B1234567/S0;
+	FLAM - Flashing Maze B24/S1234;
+	RULH - Rule H B2/S34;
+	LFRD - Live Free or Die B0/S2;
+	LIWD - Life Without Death B3/S012345678;
+	VOTE - Vote B5678/S45678;
+	VT45 - Vote 4/5 B4678/S35678;
+	SERV - Serviettes B234/S.
+
 
 TODO:
-Add clickable signs;
-Add LEAD - Neutron absorber, current controller;
+Add clickable signs -- V1.8-9, probably.;
 Add MERC - Mercurium, expands/compress with heat/cold;
-Add CAFR - Carbon film resistor;
 

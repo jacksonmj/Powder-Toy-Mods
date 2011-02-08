@@ -42,23 +42,32 @@ static menu_wall mwalls[] =
     {PIXPACK(0x579777), "Wall. Indestructible. Blocks liquids and solids, allows gasses"},
 };
 
-#define SC_WALL 0
-#define SC_SPECIAL 8
-#define SC_POWDERS 5
-#define SC_SOLIDS 6
-#define SC_ELEC 1
-#define SC_EXPLOSIVE 2
-#define SC_GAS 3
-#define SC_LIQUID 4
-#define SC_NUCLEAR 7
-#define SC_LIFE 9
-#define SC_MUR 10
-#define SC_CRACKER2 11
-#define SC_CRACKER 12
-#define SC_TOTAL 12
+#define SC_MUR 0
+#define SC_MURS 1
+#define SC_MURE 2
+#define SC_MURR 3
+#define SC_MURL 4
+#define SC_WALL 5
+#define SC_ELEC 6
+#define SC_EXPLOSIVE 7
+#define SC_GAS 8
+#define SC_LIQUID 9
+#define SC_POWDERS 10
+#define SC_SOLIDS 11
+#define SC_NUCLEAR 12
+#define SC_SPECIAL 13
+#define SC_LIFE 14
+#define SC_CRACKER2 15
+#define SC_CRACKER 16
+#define SC_TOTAL 16
 
 static menu_section msections[] =
 {
+    {"\xA0", "Murtaugh's mod", 0, 1},
+    {"\xCC", "Murtaugh's mod Special", 0, 1},
+    {"\xC2", "Murtaugh's mod Electronics", 0, 1},
+    {"\xC6", "Murtaugh's mod Radioactive", 0, 1},
+    {"\xD2", "Murtaugh's mod Life", 0, 1},
     {"\xC1", "Walls", 0, 1},
     {"\xC2", "Electronics", 0, 1},
     {"\xC3", "Explosives", 0, 1},
@@ -69,7 +78,6 @@ static menu_section msections[] =
     {"\xC6", "Radioactive", 0, 1},
     {"\xCC", "Special", 0, 1},
     {"\xD2", "Life", 0, 1},
-    {"\xA0", "Murtaugh's mod", 0, 1},
     {"\xC8", "Cracker", 0, 1},
     {"\xC8", "Cracker!", 0, 0},
 };

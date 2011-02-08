@@ -1484,7 +1484,8 @@ void draw_parts(pixel *vid)
 				t!=PT_DUST && t!=PT_FIRW && t!=PT_FWRK &&
 				t!=PT_NEUT && t!=PT_LAVA && t!=PT_BOMB &&
 				t!=PT_PHOT && t!=PT_THDR && t!=PT_SMKE &&
-				t!=PT_MBMB && t!=PT_MUR )
+				t!=PT_MBMB && t!=PT_MUR && t!=PT_PROT &&
+				t!=PT_ELEC && t!=PT_STEL)
 		{
 			if(ptypes[parts[i].type].properties&TYPE_LIQUID)
 			{
@@ -2002,6 +2003,7 @@ void draw_parts(pixel *vid)
                         blendpixel(vid, nx-1, ny-1, cr, cg, cb, 32);
                     }
 		}
+//CUT HERE -- START
                 else if(t==PT_MUR)
                 {
                     if(cmode == CM_FIRE||cmode==CM_BLOB || cmode==CM_FANCY)
@@ -2034,6 +2036,107 @@ void draw_parts(pixel *vid)
                         blendpixel(vid, nx-1, ny-1, cr, cg, cb, 32);
                     }
 		}
+                else if(t==PT_PROT)
+                {
+                    if(cmode == CM_FIRE||cmode==CM_BLOB || cmode==CM_FANCY)
+                    {
+                        vid[ny*(XRES+BARSIZE)+nx] = ptypes[t].pcolors;
+                        cr = 224;
+                        cg = 27;
+                        cb = 76;
+                        x = nx/CELL;
+                        y = ny/CELL;
+                        cr += fire_g[y][x];
+                        if(cr > 255) cr = 255;
+                        fire_r[y][x] = cr;
+                        cg += fire_g[y][x];
+                        if(cg > 255) cg = 255;
+                        fire_g[y][x] = cg;
+                        cb += fire_b[y][x];
+                        if(cb > 255) cb = 255;
+                        fire_b[y][x] = cb;
+                    }
+                    else
+                    {
+                        cr = 0xE0;
+                        cg = 0x1B;
+                        cb = 0x4C;
+                        blendpixel(vid, nx, ny, cr, cg, cb, 192);
+                        blendpixel(vid, nx+1, ny, cr, cg, cb, 96);
+                        blendpixel(vid, nx-1, ny, cr, cg, cb, 96);
+                        blendpixel(vid, nx, ny+1, cr, cg, cb, 96);
+                        blendpixel(vid, nx, ny-1, cr, cg, cb, 96);
+                        blendpixel(vid, nx+1, ny-1, cr, cg, cb, 32);
+                        blendpixel(vid, nx-1, ny+1, cr, cg, cb, 32);
+                        blendpixel(vid, nx+1, ny+1, cr, cg, cb, 32);
+                        blendpixel(vid, nx-1, ny-1, cr, cg, cb, 32);
+                    }
+		}
+                else if(t==PT_ELEC)
+                {
+                    if(cmode == CM_FIRE||cmode==CM_BLOB || cmode==CM_FANCY)
+                    {
+                        vid[ny*(XRES+BARSIZE)+nx] = ptypes[t].pcolors;
+                        cr = 87;
+                        cg = 87;
+                        cb = 87;
+                        x = nx/CELL;
+                        y = ny/CELL;
+                        cr += fire_g[y][x];
+                        if(cr > 255) cr = 255;
+                        fire_r[y][x] = cr;
+                        cg += fire_g[y][x];
+                        if(cg > 255) cg = 255;
+                        fire_g[y][x] = cg;
+                        cb += fire_b[y][x];
+                        if(cb > 255) cb = 255;
+                        fire_b[y][x] = cb;
+                    }
+                    else
+                    {
+                        cr = 0x57;
+                        cg = 0x57;
+                        cb = 0x57;
+                        blendpixel(vid, nx, ny, cr, cg, cb, 192);
+                        blendpixel(vid, nx+1, ny, cr, cg, cb, 96);
+                        blendpixel(vid, nx-1, ny, cr, cg, cb, 96);
+                        blendpixel(vid, nx, ny+1, cr, cg, cb, 96);
+                        blendpixel(vid, nx, ny-1, cr, cg, cb, 96);
+                        blendpixel(vid, nx+1, ny-1, cr, cg, cb, 32);
+                        blendpixel(vid, nx-1, ny+1, cr, cg, cb, 32);
+                        blendpixel(vid, nx+1, ny+1, cr, cg, cb, 32);
+                        blendpixel(vid, nx-1, ny-1, cr, cg, cb, 32);
+                    }
+		}
+                else if(t==PT_STEL)
+                {
+                    if(cmode == CM_FIRE||cmode==CM_BLOB || cmode==CM_FANCY)
+                    {
+                        vid[ny*(XRES+BARSIZE)+nx] = ptypes[t].pcolors;
+                        cr = 219;
+                        cg = 219;
+                        cb = 219;
+                        x = nx/CELL;
+                        y = ny/CELL;
+                        cr += fire_g[y][x];
+                        if(cr > 255) cr = 255;
+                        fire_r[y][x] = cr;
+                        cg += fire_g[y][x];
+                        if(cg > 255) cg = 255;
+                        fire_g[y][x] = cg;
+                        cb += fire_b[y][x];
+                        if(cb > 255) cb = 255;
+                        fire_b[y][x] = cb;
+                    }
+		    else
+		    {
+		        cr = 0xDB;
+                        cg = 0xDB;
+                        cb = 0xDB;
+                        blendpixel(vid, nx, ny, cr, cg, cb, 255);
+		    }
+		}
+//CUT HERE -- END
 		else if(t==PT_FILT)
 		{
 			int temp_bin = (int)((parts[i].temp-273.0f)*0.025f);
@@ -3509,7 +3612,7 @@ void sdl_open(void)
         fprintf(stderr, "Creating window: %s\n", SDL_GetError());
         exit(1);
     }
-    SDL_WM_SetCaption("The Powder Toy", "Powder Toy");
+    SDL_WM_SetCaption("Murtaugh's The Powder Toy", "Murtaugh's TPT");
     sdl_seticon();
     SDL_EnableUNICODE(1);
     //SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, SDL_DEFAULT_REPEAT_INTERVAL);

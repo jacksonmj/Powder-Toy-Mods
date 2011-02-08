@@ -2439,10 +2439,10 @@ int main(int argc, char *argv[])
                 pastFPS = currentTime;
             }
 			
-			sprintf(uitext, "Murtaugh's Mod 1.6\nVersion %d.%d FPS:%d\nParts:%d Generation:%d", SAVE_VERSION, MINOR_VERSION, FPSB, NUM_PARTS,GENERATION);
+			sprintf(uitext, "Murtaugh's Mod 1.7\nVersion %d.%d FPS:%d\nParts:%d Generation:%d", SAVE_VERSION, MINOR_VERSION, FPSB, NUM_PARTS,GENERATION);
 
 			if(DEBUG_MODE)
-				sprintf(uitext, "Murtaugh's Mod 1.6\nVersion %d.%d FPS:%d\nParts:%d Generation:%d", SAVE_VERSION, MINOR_VERSION, FPSB, NUM_PARTS,GENERATION);
+				sprintf(uitext, "Murtaugh's Mod 1.7\nVersion %d.%d FPS:%d\nParts:%d Generation:%d", SAVE_VERSION, MINOR_VERSION, FPSB, NUM_PARTS,GENERATION);
 
 			if(REPLACE_MODE)
 				strappend(uitext, " [REPLACE MODE]");
