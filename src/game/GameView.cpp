@@ -1766,7 +1766,7 @@ void GameView::OnDraw()
 			{
 				activeBrush->RenderFill(ren, finalCurrentMouse);
 			}
-			else
+			//else
 			{
 				if(wallBrush)
 				{

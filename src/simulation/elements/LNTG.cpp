@@ -40,7 +40,7 @@ Element_LNTG::Element_LNTG()
     LowTemperature = 63.0f;
     LowTemperatureTransition = PT_NICE;
     HighTemperature = 77.0f;
-    HighTemperatureTransition = PT_NONE;
+    HighTemperatureTransition = NT;
     
     Update = NULL;
     

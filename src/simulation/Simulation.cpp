@@ -2007,7 +2007,11 @@ void Simulation::init_can_move()
 	can_move[PT_DEST][PT_BCLN] = 0;
 	can_move[PT_DEST][PT_PBCN] = 0;
 	can_move[PT_BIZR][PT_FILT] = 2;
+	can_move[PT_BETA][PT_METL] = 2;
 	can_move[PT_BIZRG][PT_FILT] = 2;
+	can_move[PT_GMMA][PT_METL] = 2;
+	can_move[PT_GMMA][PT_IRON] = 2;
+	can_move[PT_GMMA][PT_CLNE] = 2;
 	for (t=0;t<PT_NUM;t++)
 	{
 		//spark shouldn't move
@@ -3047,6 +3051,30 @@ int Simulation::create_part(int p, int x, int y, int tv)
 					parts[i].vy = 2.0f*sinf(a);
 				}
 				if (t==PT_NEUT)
+				{
+					float r = (rand()%128+128)/127.0f;
+					float a = (rand()%360)*3.14159f/180.0f;
+					parts[i].life = rand()%480+480;
+					parts[i].vx = r*cosf(a);
+					parts[i].vy = r*sinf(a);
+				}
+				if (t==PT_ALPH)
+				{
+					float r = (rand()%128+128)/127.0f;
+					float a = (rand()%360)*3.14159f/180.0f;
+					parts[i].life = rand()%480+480;
+					parts[i].vx = r*cosf(a);
+					parts[i].vy = r*sinf(a);
+				}
+				if (t==PT_BETA)
+				{
+					float r = (rand()%128+128)/127.0f;
+					float a = (rand()%360)*3.14159f/180.0f;
+					parts[i].life = rand()%480+480;
+					parts[i].vx = r*cosf(a);
+					parts[i].vy = r*sinf(a);
+				}
+				if (t==PT_GMMA)
 				{
 					float r = (rand()%128+128)/127.0f;
 					float a = (rand()%360)*3.14159f/180.0f;

@@ -102,7 +102,7 @@ int Element_NEUT::update(UPDATE_FUNC_ARGS)
 						pv[y/CELL][x/CELL] += 6.0f * CFDS;
 					}
 					else
-						sim.kill_part(r>>8);
+						sim.kill_part(r>>8);XD
 				}
 #endif
 				else if ((r&0xFF)==PT_GUNP && 15>(rand()%1000))

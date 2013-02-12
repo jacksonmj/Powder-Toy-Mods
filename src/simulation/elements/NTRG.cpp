@@ -1,10 +1,10 @@
 #include "simulation/Elements.h"
-//#TPT-Directive ElementClass Element_GAS PT_GAS 10
-Element_GAS::Element_GAS()
+//#TPT-Directive ElementClass Element_NTRG PT_NTRG 169
+Element_NTRG::Element_NTRG()
 {
-    Identifier = "DEFAULT_PT_GAS";
-    Name = "GAS";
-    Colour = PIXPACK(0xE0FF20);
+    Identifier = "DEFAULT_PT_NTRG";
+    Name = "NTRG";
+    Colour = PIXPACK(0x66CCCC);
     MenuVisible = 1;
     MenuSection = SC_GAS;
     Enabled = 1;
@@ -19,16 +19,16 @@ Element_GAS::Element_GAS()
     HotAir = 0.001f	* CFDS;
     Falldown = 0;
     
-    Flammable = 600;
+    Flammable = 0;
     Explosive = 0;
     Meltable = 0;
     Hardness = 1;
     
     Weight = 1;
     
-    Temperature = R_TEMP+2.0f	+273.15f;
+    Temperature = R_TEMP-120.0f	+273.15f;
     HeatConduct = 42;
-    Description = "Gas. Diffuses. Flammable. Liquefies under pressure.";
+    Description = "Nitrogen Gas";
     
     State = ST_GAS;
     Properties = TYPE_GAS;
@@ -36,14 +36,14 @@ Element_GAS::Element_GAS()
     LowPressure = IPL;
     LowPressureTransition = NT;
     HighPressure = 6.0f;
-    HighPressureTransition = PT_OIL;
-    LowTemperature = ITL;
-    LowTemperatureTransition = NT;
-    HighTemperature = 773.0f;
-    HighTemperatureTransition = PT_FIRE;
+    HighPressureTransition = NT;
+    LowTemperature = -30.0f;
+    LowTemperatureTransition = PT_LNTG;
+    HighTemperature = 9999.0f;
+    HighTemperatureTransition = PT_PLSM;
     
     Update = NULL;
     
 }
 
-Element_GAS::~Element_GAS() {}
+Element_NTRG::~Element_NTRG() {}

@@ -28,7 +28,7 @@ Element_PLUT::Element_PLUT()
     
     Temperature = R_TEMP+4.0f	+273.15f;
     HeatConduct = 251;
-    Description = "Heavy particles. Fissile. Generates neutrons under pressure.";
+    Description = "Heavy Particles. Fissile. Generates Neutrons Under Pressure. Also Makes Beta Radiation";
     
     State = ST_SOLID;
     Properties = TYPE_PART|PROP_NEUTPENETRATE|PROP_RADIOACTIVE;
@@ -48,7 +48,13 @@ Element_PLUT::Element_PLUT()
 
 //#TPT-Directive ElementHeader Element_PLUT static int update(UPDATE_FUNC_ARGS)
 int Element_PLUT::update(UPDATE_FUNC_ARGS)
- {
+{
+	if (0.2>rand()%1000)
+	    sim->create_part(i+5,x,y,PT_BETA);
+    if (0.2>rand()%100000)
+	    sim->create_part(i+5,x,y,PT_ALPH);	 
+
+
 	if (1>rand()%100 && ((int)(5.0f*sim->pv[y/CELL][x/CELL]))>(rand()%1000))
 	{
 		sim->create_part(i, x, y, PT_NEUT);

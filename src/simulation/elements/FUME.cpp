@@ -1,10 +1,10 @@
 #include "simulation/Elements.h"
-//#TPT-Directive ElementClass Element_GAS PT_GAS 10
-Element_GAS::Element_GAS()
+//#TPT-Directive ElementClass Element_FUME PT_FUME 168
+Element_FUME::Element_FUME()
 {
-    Identifier = "DEFAULT_PT_GAS";
-    Name = "GAS";
-    Colour = PIXPACK(0xE0FF20);
+    Identifier = "DEFAULT_PT_FUME";
+    Name = "FUME";
+    Colour = PIXPACK(0x666666);
     MenuVisible = 1;
     MenuSection = SC_GAS;
     Enabled = 1;
@@ -14,21 +14,21 @@ Element_GAS::Element_GAS()
     AirLoss = 0.99f;
     Loss = 0.30f;
     Collision = -0.1f;
-    Gravity = 0.0f;
-    Diffusion = 0.75f;
-    HotAir = 0.001f	* CFDS;
+    Gravity = 0.999f;
+    Diffusion = 0.1f;
+    HotAir = 0.0f	* CFDS;
     Falldown = 0;
     
-    Flammable = 600;
+    Flammable = 900;
     Explosive = 0;
     Meltable = 0;
     Hardness = 1;
     
-    Weight = 1;
+    Weight = 0.01;
     
     Temperature = R_TEMP+2.0f	+273.15f;
     HeatConduct = 42;
-    Description = "Gas. Diffuses. Flammable. Liquefies under pressure.";
+    Description = "Liquid Gas Vapor";
     
     State = ST_GAS;
     Properties = TYPE_GAS;
@@ -36,14 +36,14 @@ Element_GAS::Element_GAS()
     LowPressure = IPL;
     LowPressureTransition = NT;
     HighPressure = 6.0f;
-    HighPressureTransition = PT_OIL;
+    HighPressureTransition = PT_LGAS;
     LowTemperature = ITL;
     LowTemperatureTransition = NT;
-    HighTemperature = 773.0f;
+    HighTemperature = 573.0f;
     HighTemperatureTransition = PT_FIRE;
     
     Update = NULL;
     
 }
 
-Element_GAS::~Element_GAS() {}
+Element_FUME::~Element_FUME() {}

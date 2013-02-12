@@ -28,7 +28,7 @@ Element_URAN::Element_URAN()
     
     Temperature = R_TEMP+30.0f+273.15f;
     HeatConduct = 251;
-    Description = "Heavy particles. Generates heat under pressure.";
+    Description = "Uranium-238 Heavy particles. Generates heat under pressure. Releases Alpha/Gamma";
     
     State = ST_SOLID;
     Properties = TYPE_PART | PROP_RADIOACTIVE;
@@ -49,7 +49,13 @@ Element_URAN::Element_URAN()
 //#TPT-Directive ElementHeader Element_URAN static int update(UPDATE_FUNC_ARGS)
 int Element_URAN::update(UPDATE_FUNC_ARGS)
  {
-	if (!sim->legacy_enable && sim->pv[y/CELL][x/CELL]>0.0f)
+	
+	if (0.2>rand()%1000)
+	    sim->create_part(i+5,x,y,PT_ALPH);
+    if (0.2>rand()%100000)
+	    sim->create_part(i+5,x,y,PT_GMMA);	 
+	 
+	 if (!sim->legacy_enable && sim->pv[y/CELL][x/CELL]>0.0f)
 	{
 		float atemp =  parts[i].temp + (-MIN_TEMP);
 		parts[i].temp = restrict_flt((atemp*(1+(sim->pv[y/CELL][x/CELL]/2000)))+MIN_TEMP, MIN_TEMP, MAX_TEMP);

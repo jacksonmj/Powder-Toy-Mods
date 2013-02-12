@@ -39,8 +39,8 @@ Element_SMKE::Element_SMKE()
     HighPressureTransition = NT;
     LowTemperature = ITL;
     LowTemperatureTransition = NT;
-    HighTemperature = 625.0f;
-    HighTemperatureTransition = PT_FIRE;
+    HighTemperature = 9999.0f;
+    HighTemperatureTransition = PT_NONE;
     
     Update = NULL;
     Graphics = &Element_SMKE::graphics;

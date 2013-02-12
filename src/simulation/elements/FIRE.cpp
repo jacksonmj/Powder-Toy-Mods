@@ -49,7 +49,7 @@ Element_FIRE::Element_FIRE()
 //#TPT-Directive ElementHeader Element_FIRE static int update(UPDATE_FUNC_ARGS)
 int Element_FIRE::update(UPDATE_FUNC_ARGS)
  {
-	int r, rx, ry, rt, t = parts[i].type;
+	 int r, rx, ry, rt, t = parts[i].type;
 	if (t==PT_PLSM&&parts[i].ctype == PT_NBLE&&parts[i].life <=1)
 	{
 		t = PT_NBLE;
@@ -96,14 +96,17 @@ int Element_FIRE::update(UPDATE_FUNC_ARGS)
 				    (rt!=PT_SPNG || parts[r>>8].life==0) &&
 				    sim->elements[rt].Flammable && (sim->elements[rt].Flammable + (int)(sim->pv[(y+ry)/CELL][(x+rx)/CELL]*10.0f))>(rand()%1000))
 				{
+
 					sim->part_change_type(r>>8,x+rx,y+ry,PT_FIRE);
 					parts[r>>8].temp = restrict_flt(sim->elements[PT_FIRE].Temperature + (sim->elements[rt].Flammable/2), MIN_TEMP, MAX_TEMP);
 					parts[r>>8].life = rand()%80+180;
 					parts[r>>8].tmp = parts[r>>8].ctype = 0;
 					if (sim->elements[rt].Explosive)
-						sim->pv[y/CELL][x/CELL] += 0.25f * CFDS;
-				}
-			}
+						sim->pv[y/CELL][x/CELL] += 1.0f * CFDS;
+					if (rt == PT_LGAS)
+						sim->pv[y/CELL][x/CELL] += 10.0 *CFDS;
+				}0
+			;}
 	if (sim->legacy_enable) updateLegacy(UPDATE_FUNC_SUBCALL_ARGS);
 	return 0;
 }
